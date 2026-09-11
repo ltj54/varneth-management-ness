@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ContactForm } from "./contact-form";
+import { BrandMotion } from "./brand-motion";
 
 const contactEmail = "bhstockmann@gmail.com";
 const phone = "+47 93 66 97 87";
@@ -7,49 +8,47 @@ const phone = "+47 93 66 97 87";
 export default function Home() {
   return (
     <main>
-      <div className="draft-notice">Arbeidsutkast · innhold og uttrykk utvikles sammen med Henning</div>
+      <div className="topline"><span>Varneth Management Ness</span><span>Music · People · Opportunities · Together</span><span>Haukedalen / Norway</span></div>
       <header className="site-header">
         <a className="brand" href="#top" aria-label="Varneth Management Ness – forsiden">
           <Image src="/varneth-logo.jpg" alt="Varneth Management Ness" width={720} height={810} priority />
         </a>
         <nav aria-label="Hovedmeny">
-          <a href="#tjenester">Tjenester</a>
-          <a href="#om">Om Varneth</a>
-          <a href="#kontakt">Kontakt</a>
+          <a href="#tjenester"><span>01</span> Tjenester</a>
+          <a href="#om"><span>02</span> Om Varneth</a>
+          <a className="nav-cta" href="#kontakt">Start a conversation <b>↗</b></a>
         </nav>
       </header>
 
       <section className="hero" id="top" aria-labelledby="hero-title">
         <div className="hero-main">
-          <p className="eyebrow">Varneth Management Ness · Haukedalen</p>
-          <h1 id="hero-title">Musikk, mennesker og muligheter.</h1>
-          <p className="hero-intro">Varneth Management Ness arbeider med produksjon og utgivelse av musikk- og lydopptak.</p>
-          <p className="hero-detail">Et første utkast til en enkel side for å presentere virksomheten, arbeidet og veien videre. Innholdet kan formes helt etter Varneths retning.</p>
+          <p className="eyebrow"><span className="eyebrow-line" /> Independent music management</p>
+          <h1 id="hero-title"><span>Make noise.</span><em>Make meaning.</em></h1>
+          <p className="hero-intro">Vi utvikler artister, lyd og muligheter med blikket rettet mot en større scene.</p>
           <div className="hero-actions">
             <ContactForm className="contact-link" />
-            <a className="services-link" href="#tjenester">Se hva siden kan inneholde <span aria-hidden="true">↓</span></a>
+            <a className="services-link" href="#tjenester">Explore the sound <span aria-hidden="true">↓</span></a>
           </div>
         </div>
-        <aside className="hero-aside" aria-label="Varneths uttrykk">
-          <p>Artistutvikling</p><p>Produksjon</p><p>Global rekkevidde</p>
-          <small>Music · People · Opportunities · Together</small>
-        </aside>
+        <BrandMotion />
       </section>
 
+      <div className="marquee" aria-label="Varneths arbeidsområder"><div><span>Artist development</span><b>✳</b><span>Touring</span><b>✳</b><span>Production</span><b>✳</b><span>Brand partnerships</span><b>✳</b><span>Global reach</span><b>✳</b></div></div>
+
       <section className="services" id="tjenester" aria-labelledby="services-title">
-        <header className="services-heading"><p className="eyebrow">Mulig struktur</p><h2 id="services-title">En tydelig scene for arbeidet.</h2></header>
-        <div className="service-feature"><h3>Musikkproduksjon</h3><p>Siden kan samle utgivelser, artister, samarbeid og aktuelle prosjekter på ett sted. Tekst og prioriteringer bestemmes sammen med Varneth.</p></div>
+        <header className="services-heading"><p className="eyebrow"><span className="eyebrow-line" /> What we do</p><h2 id="services-title">Turn a spark into a signal.</h2><p className="section-intro">Fra første idé til ferdig uttrykk — vi bygger rom for mennesker og musikk som fortjener å bli hørt.</p></header>
+        <div className="service-feature"><div><span className="service-number">01</span><h3>Music<br /><em>production</em></h3></div><p>Utvikling, produksjon og utgivelse av musikk- og lydopptak med retning, nerve og en tydelig identitet.</p></div>
         <div className="service-pair">
-          <article><h3>Artistutvikling</h3><p>Presenter hvordan Varneth arbeider med mennesker, uttrykk og karrierer.</p></article>
-          <article><h3>Partnerskap</h3><p>Vis frem muligheter for samarbeid, booking, media, merkevarer og internasjonal kontakt.</p></article>
+          <article><span className="service-number">02</span><h3>Artist<br /><em>development</em></h3><p>Et skarpere uttrykk, en modigere retning og et lag som heier hele veien.</p><a href="#kontakt">Build the next chapter ↗</a></article>
+          <article><span className="service-number">03</span><h3>Brand<br /><em>partnerships</em></h3><p>Smartere samarbeid mellom artister, merkevarer, media og mennesker.</p><a href="#kontakt">Open the door ↗</a></article>
         </div>
       </section>
 
       <section className="about" id="om" aria-labelledby="about-title">
-        <header><p className="eyebrow">Om virksomheten</p><h2 id="about-title">Varneth Management Ness</h2></header>
+        <header><p className="eyebrow"><span className="eyebrow-line" /> The point of view</p><h2 id="about-title">Good things happen when the right people meet.</h2></header>
         <div className="about-copy">
-          <p className="about-lead">Building a Brighter Tomorrow.</p>
-          <p>Varneth Management Ness er et norsk enkeltpersonforetak registrert i Haukedalen, Sunnfjord, med aktivitet innen produksjon av musikk.</p>
+          <p className="about-lead">Building a Brighter Tomorrow<span className="accent-dot">.</span></p>
+          <p>Varneth Management Ness er et norsk enkeltpersonforetak i Haukedalen, Sunnfjord, med aktivitet innen produksjon av musikk og lydopptak.</p>
           <blockquote className="brand-quote">Music · People · Opportunities · Together</blockquote>
           <dl className="facts">
             <div><dt>Foretak</dt><dd>Varneth Management Ness</dd></div>
@@ -61,7 +60,7 @@ export default function Home() {
       </section>
 
       <section className="contact" id="kontakt" aria-labelledby="contact-title">
-        <div><p className="eyebrow">Kontakt</p><h2 id="contact-title">La oss snakke om neste steg.</h2></div>
+        <div><p className="eyebrow"><span className="eyebrow-line" /> Your turn</p><h2 id="contact-title">Have a sound worth sharing?</h2></div>
         <div className="contact-copy">
           <p>Har du et prosjekt, en artist eller en idé du vil utvikle? Ta kontakt, så finner vi ut hva siden bør inneholde.</p>
           <ContactForm className="contact-form-trigger" label="Send en forespørsel" />
