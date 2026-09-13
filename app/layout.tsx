@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://ltj54.github.io/varneth-management-ness"),
   title: "Varneth Management Ness | Music, People, Opportunities",
   description: "Henning Stockmann Ness — musikkprodusent, KI-låtskriver og gitarist. Utforsk Varneths musikkprosjekter, utgivelser og rådgivning innen KI-musikkproduksjon.",
-  icons: { icon: "/favicon.svg" },
+  icons: { icon: "/varneth-management-ness/favicon.svg" },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

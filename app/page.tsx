@@ -36,6 +36,7 @@ const copy = {
   },
 };
 const search = (name: string) => `https://open.spotify.com/search/${encodeURIComponent(name)}`;
+const basePath = process.env.NODE_ENV === "production" ? "/varneth-management-ness" : "";
 
 export default function Home() {
   const [language, setLanguage] = useState<"nb" | "en">("nb");
@@ -59,7 +60,7 @@ export default function Home() {
       <section className="hero" id="top">
         <div className="atmosphere" aria-hidden="true"><i /><i /><i /></div>
         <div className="hero-copy"><p className="eyebrow">{t.label}</p><h1>{t.title}<em>{t.italic}</em></h1><p className="intro">{t.intro}</p><div className="hero-actions"><a className="button" href="#musikk">{t.listen}<span aria-hidden="true">↘</span></a><a className="text-link" href="#kontakt">{t.contact} ↗</a></div></div>
-        <div className="emblem"><div className="halo" aria-hidden="true" /><Image src="/varneth-logo.jpg" alt="Varneth Management — Music, People, Opportunities, Together. Building a Brighter Tomorrow." width={879} height={809} priority sizes="(max-width: 900px) 90vw, 48vw" /></div>
+        <div className="emblem"><div className="halo" aria-hidden="true" /><Image src={`${basePath}/varneth-logo.jpg`} alt="Varneth Management — Music, People, Opportunities, Together. Building a Brighter Tomorrow." width={879} height={809} priority sizes="(max-width: 900px) 90vw, 48vw" /></div>
         <div className="hero-bottom"><span>INDEPENDENT SOUND / NORWAY</span><button onClick={() => setPaused(!paused)} aria-pressed={paused}>{paused ? "▷" : "Ⅱ"} {paused ? t.resume : t.pause}</button><a href="#musikk" aria-label={t.listen}>↓</a></div>
       </section>
 
