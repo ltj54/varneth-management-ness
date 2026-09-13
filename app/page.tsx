@@ -49,8 +49,15 @@ const basePath = process.env.NODE_ENV === "production" ? "/varneth-management-ne
 export default function Home() {
   const [language, setLanguage] = useState<"nb" | "en">("nb");
   const [paused, setPaused] = useState(false);
+  const [selectedCover, setSelectedCover] = useState<(typeof covers)[number] | null>(null);
   const t = copy[language];
   useEffect(() => { document.documentElement.lang = language; }, [language]);
+  useEffect(() => {
+    if (!selectedCover) return;
+    const closeOnEscape = (event: KeyboardEvent) => { if (event.key === "Escape") setSelectedCover(null); };
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [selectedCover]);
 
   return (
     <main className={paused ? "motion-paused" : ""}>
@@ -82,13 +89,20 @@ export default function Home() {
         <div className="section-heading"><div><p className="eyebrow">{t.covers}</p><h2 id="covers-title">{t.coversTitle}</h2></div><p>{t.coversIntro}</p></div>
         <div className="cover-grid">
           {covers.map(cover => <figure className="cover-card" key={cover.file}>
-            <a href={`${basePath}/covers/${cover.file}.png`} target="_blank" rel="noreferrer" aria-label={`${t.coverOpen}: ${cover.title}`}>
+            <button className="cover-trigger" type="button" onClick={() => setSelectedCover(cover)} aria-label={`${t.coverOpen}: ${cover.title}`}>
               <Image src={`${basePath}/covers/${cover.file}.png`} alt={`${cover.project} — ${cover.title}`} width={cover.size} height={cover.size} sizes="(max-width: 600px) 88vw, 43vw" />
               <span className="cover-open">{t.coverOpen} <span aria-hidden="true">↗</span></span>
-            </a>
+            </button>
             <figcaption><p className="eyebrow">{cover.project}</p><h3>{cover.title}</h3></figcaption>
           </figure>)}
         </div>
+        {selectedCover && <div className="cover-modal" role="dialog" aria-modal="true" aria-labelledby="cover-modal-title" onClick={(event) => { if (event.target === event.currentTarget) setSelectedCover(null); }}>
+          <div className="cover-modal-content">
+            <button className="cover-close" type="button" onClick={() => setSelectedCover(null)} aria-label={language === "nb" ? "Lukk coverbildet" : "Close cover artwork"}>×</button>
+            <Image src={`${basePath}/covers/${selectedCover.file}.png`} alt={`${selectedCover.project} — ${selectedCover.title}`} width={selectedCover.size} height={selectedCover.size} priority sizes="(max-width: 900px) 92vw, 70vw" />
+            <div className="cover-modal-caption"><span>{selectedCover.project}</span><h3 id="cover-modal-title">{selectedCover.title}</h3></div>
+          </div>
+        </div>}
       </section>
 
       <section className="about section" id="henning"><div><p className="eyebrow">{t.human}</p><h2>{t.humanTitle}<br /><em>{t.humanLast}</em></h2><p className="bio">{t.bio}</p><a className="text-link" href="#kontakt">{t.contact} ↗</a></div><div className="approach"><p className="eyebrow">{t.approach}</p><span className="approach-mark" aria-hidden="true">AI</span><h3>{t.approachText}</h3></div></section>
