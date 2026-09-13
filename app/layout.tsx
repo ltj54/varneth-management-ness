@@ -6,8 +6,8 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://ltj54.github.io/varneth-management-ness"),
   title: "Varneth Management Ness | Music, People, Opportunities",
-  description: "Henning Stockmann Ness — musikkprodusent, låtskriver og gitarist. Utforsk Varneths musikkprosjekter og utgivelser.",
-  icons: { icon: "/varneth-management-ness/favicon.svg" },
+  description: "Henning Stockmann Ness — KI-komponist og produsent av KI-musikk. Utforsk Broken Veil, Black Veil Hearts og rådgivning innen KI-musikkproduksjon.",
+  icons: { icon: `${process.env.NODE_ENV === "production" ? "/varneth-management-ness" : ""}/favicon.svg` },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

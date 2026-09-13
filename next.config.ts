@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: "export",
-  basePath: "/varneth-management-ness",
+  basePath: process.env.NODE_ENV === "production" ? "/varneth-management-ness" : "",
   trailingSlash: true,
   images: { unoptimized: true },
 };

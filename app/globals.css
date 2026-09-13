@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+.project-art.project-logo{height:auto;aspect-ratio:1;background:#050505;padding:1rem}
+.project-logo img{width:100%;height:100%;object-fit:contain}
+.approach{min-height:25rem;padding:2rem;border:1px solid var(--line);display:flex;flex-direction:column;justify-content:space-between;background:radial-gradient(ellipse at 80% 0,#72533140,transparent 70%),#101010}
+.approach-mark{font-family:var(--serif);font-size:8rem;line-height:1.3;color:var(--gold);letter-spacing:-.06em}
+.approach h3{font-size:clamp(1.8rem,3vw,2.8rem);max-width:20rem;line-height:1.2}
+
 :root{--black:#080909;--panel:#101111;--white:#eee7dc;--gold:#c7a370;--muted:#a59f94;--line:#c7a37030;--serif:"Newsreader Variable",Georgia,serif;--sans:"Work Sans Variable",Arial,sans-serif;--gutter:clamp(1.4rem,6vw,7rem)}
 *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:7rem;background:var(--black)}body{margin:0;background:var(--black);color:var(--white);font-family:var(--sans);-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}button,a{-webkit-tap-highlight-color:transparent}button:focus-visible,a:focus-visible{outline:2px solid var(--gold);outline-offset:6px}::selection{background:var(--gold);color:var(--black)}h1,h2,h3,p{margin:0}h1,h2,h3{font-family:var(--serif);font-weight:420}em{font-weight:380;color:var(--gold)}
 .site-header{position:relative;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:2rem;padding:1.6rem var(--gutter);border-bottom:1px solid var(--line);background:#080909}.wordmark strong{font-family:var(--serif);font-size:1.8rem;letter-spacing:.13em;font-weight:500}.wordmark strong span{font-family:var(--sans);font-size:.55rem;vertical-align:top;letter-spacing:0}.wordmark small{display:block;font-size:.48rem;letter-spacing:.4em;color:var(--gold);margin-top:.15rem}.site-header nav{display:flex;gap:2.5rem;font-size:.78rem;color:#c5beb2}.site-header nav a:hover{color:var(--gold)}.languages{display:flex;align-items:center;gap:.5rem;font-size:.65rem;color:var(--muted)}.languages button{border:0;background:transparent;padding:.5rem;color:var(--muted)}.languages button[aria-pressed=true]{color:var(--gold);border-bottom:1px solid var(--gold)}

@@ -5,34 +5,34 @@ import { useEffect, useState } from "react";
 
 const copy = {
   nb: {
-    nav: ["Musikken", "Mennesket", "Kontakt"], label: "Gitar · Låtskriving · Produksjon",
+    nav: ["Musikken", "Mennesket", "Kontakt"], label: "KI-komposisjon · Musikkproduksjon · Rådgivning",
     title: "Musikk med", italic: "egen signatur.",
-    intro: "Varneth Management Ness samler Henning Stockmann Ness’ arbeid som gitarist, låtskriver og musikkprodusent.",
+    intro: "Varneth Management Ness samler Henning Stockmann Ness’ arbeid som KI-komponist og produsent av KI-musikk.",
     listen: "Utforsk musikken", contact: "Ta kontakt", pause: "Pause bevegelse", resume: "Start bevegelse",
     projects: "Musikkprosjekter", projectTitle: "To navn. Egen nerve.", projectIntro: "Hennings egne musikkprosjekter. Utforsk lyden på Spotify.",
-    ai: "Eget musikkprosjekt", search: "Finn på Spotify", track: "Lytt / One more stage", load: "Åpne Spotify-spilleren", privacy: "Spilleren lastes fra Spotify når du åpner den.",
+    ai: "Eget KI-musikkprosjekt", search: "Søk på Spotify",
     human: "Bak uttrykket", humanTitle: "Henning", humanLast: "Stockmann Ness.",
-    bio: "Musikkprodusent, låtskriver og gitarist. Gjennom Varneth Management Ness arbeider Henning med egne musikkprosjekter, produksjon og utgivelse.",
-    video: "Henning på gitar", watch: "Se Fighters på YouTube", videoNote: "Fighters · Henning Ness · SUHR & FURCH",
+    bio: "Henning er KI-komponist og driver med produksjon og utgivelse av KI-musikk. Gjennom Varneth Management Ness utvikler han egne prosjekter og tilbyr rådgivning innen KI-musikkproduksjon.",
+    approach: "Kreativitet møter teknologi", approachText: "Egne musikkprosjekter. Nye verktøy. Et personlig uttrykk.",
     craft: "Arbeidet", craftTitle: "Fra idé til uttrykk.",
-    services: [["Musikkproduksjon", "Produksjon og utgivelse av musikk gjennom egne prosjekter."], ["Låtskriving", "Melodier, gitar og musikalske ideer med et personlig uttrykk."], ["Samarbeid", "Ta kontakt om du ønsker å utvikle en låt, et prosjekt eller et musikalsk uttrykk."]],
+    services: [["KI-musikkproduksjon", "Produksjon og utgivelse av KI-musikk gjennom egne prosjekter."], ["KI-komposisjon", "Musikalske ideer og komposisjoner utviklet med KI som kreativt verktøy."], ["Rådgivning", "Ta kontakt om rådgivning innen KI-musikkproduksjon og arbeidet med egne prosjekter."]],
     inspiration: "På Hennings spilleliste", inspirationNote: "Musikalsk inspirasjon · uavhengige artister", inspirationLink: "Spotify-søk",
-    end: "Har du et", endItalic: "prosjekt?", endText: "Har du en idé, en låt eller et prosjekt du ønsker å utvikle? Ta kontakt med Henning.", email: "Send en e-post", footer: "Musikkproduksjon · Låtskriving · Gitar",
+    end: "Har du et", endItalic: "prosjekt?", endText: "Vil du snakke om KI-musikk, produksjon eller rådgivning? Ta kontakt med Henning.", email: "Send en e-post", footer: "KI-komposisjon · Musikkproduksjon · Rådgivning",
   },
   en: {
-    nav: ["The music", "The person", "Contact"], label: "Guitar · Songwriting · Production",
+    nav: ["The music", "The person", "Contact"], label: "AI composition · Music production · Consulting",
     title: "Dark tones.", italic: "A voice of its own.",
-    intro: "Varneth Management Ness brings together Henning Stockmann Ness’ work as a guitarist, songwriter and music producer.",
+    intro: "Varneth Management Ness brings together Henning Stockmann Ness’ work as an AI composer and AI music producer.",
     listen: "Explore the music", contact: "Get in touch", pause: "Pause motion", resume: "Start motion",
     projects: "Music projects", projectTitle: "Two names. Their own pulse.", projectIntro: "Henning’s own music projects. Explore the sound on Spotify.",
-    ai: "Original music project", search: "Find on Spotify", track: "Listen / One more stage", load: "Open Spotify player", privacy: "The player loads from Spotify when you open it.",
+    ai: "Original AI music project", search: "Search on Spotify",
     human: "Behind the sound", humanTitle: "Henning", humanLast: "Stockmann Ness.",
-    bio: "Music producer, songwriter and guitarist. Through Varneth Management Ness, Henning works on his own music projects, production and releases.",
-    video: "Henning on guitar", watch: "Watch Fighters on YouTube", videoNote: "Fighters · Henning Ness · SUHR & FURCH",
+    bio: "Henning is an AI composer working in AI music production and releases. Through Varneth Management Ness, he develops his own projects and offers consulting in AI music production.",
+    approach: "Creativity meets technology", approachText: "Original music projects. New tools. A personal expression.",
     craft: "The craft", craftTitle: "From idea to expression.",
-    services: [["Music production", "Producing and releasing music through original projects."], ["Songwriting", "Melodies, guitar and musical ideas with a personal point of view."], ["Collaboration", "Get in touch if you want to develop a song, a project or a musical expression."]],
+    services: [["AI music production", "Producing and releasing AI music through original projects."], ["AI composition", "Musical ideas and compositions developed with AI as a creative tool."], ["Consulting", "Get in touch about AI music production consulting and developing your own projects."]],
     inspiration: "On Henning’s playlist", inspirationNote: "Musical inspiration · independent artists", inspirationLink: "Spotify search",
-    end: "Have a", endItalic: "project?", endText: "Have an idea, a song or a project you would like to develop? Get in touch with Henning.", email: "Send an email", footer: "Music production · Songwriting · Guitar",
+    end: "Have a", endItalic: "project?", endText: "Want to talk about AI music, production or consulting? Get in touch with Henning.", email: "Send an email", footer: "AI composition · Music production · Consulting",
   },
 };
 const search = (name: string) => `https://open.spotify.com/search/${encodeURIComponent(name)}`;
@@ -41,7 +41,6 @@ const basePath = process.env.NODE_ENV === "production" ? "/varneth-management-ne
 export default function Home() {
   const [language, setLanguage] = useState<"nb" | "en">("nb");
   const [paused, setPaused] = useState(false);
-  const [player, setPlayer] = useState(false);
   const t = copy[language];
   useEffect(() => { document.documentElement.lang = language; }, [language]);
 
@@ -67,12 +66,11 @@ export default function Home() {
       <section className="music section" id="musikk">
         <div className="section-heading"><div><p className="eyebrow">{t.projects}</p><h2>{t.projectTitle}</h2></div><p>{t.projectIntro}</p></div>
         <div className="project-grid">
-          {["Brøken Veil", "Black Veil Hart"].map((name, i) => <a className={`project project-${i}`} href={search(name)} target="_blank" rel="noreferrer" key={name}><div className="project-art" aria-hidden="true"><div className="veil" /><span>{i === 0 ? "BV" : "BVH"}</span><i /></div><div className="project-content"><p className="eyebrow">{t.ai}</p><h3>{name}</h3><span className="project-link">{t.search}<b aria-hidden="true">↗</b></span></div></a>)}
+          {[{ name: "Broken Veil", logo: "broken-veil.png", width: 1536, height: 1024 }, { name: "Black Veil Hearts", logo: "black-veil-hearts.png", width: 1254, height: 1254 }].map(({ name, logo, width, height }, i) => <a className={`project project-${i}`} href={search(name)} target="_blank" rel="noreferrer" key={name}><div className="project-art project-logo"><Image src={`${basePath}/${logo}`} alt={`${name} – ${language === "nb" ? "prosjektlogo" : "project logo"}`} width={width} height={height} sizes="(max-width: 600px) 90vw, 44vw" /></div><div className="project-content"><p className="eyebrow">{t.ai}</p><h3>{name}</h3><span className="project-link">{t.search}<b aria-hidden="true">↗</b></span></div></a>)}
         </div>
-        <div className="listening"><div><p className="eyebrow">{t.track}</p><p>One more stage</p></div><div className="player-area">{player ? <iframe title="One more stage — Spotify" src="https://open.spotify.com/embed/track/5rBLqdQRcqTW66VkG8r9mT?theme=0" width="100%" height="152" allow="encrypted-media; fullscreen; picture-in-picture" loading="lazy" /> : <><button className="button outline" onClick={() => setPlayer(true)}><span aria-hidden="true">▷</span>{t.load}</button><small>{t.privacy}</small></>}</div></div>
       </section>
 
-      <section className="about section" id="henning"><div><p className="eyebrow">{t.human}</p><h2>{t.humanTitle}<br /><em>{t.humanLast}</em></h2><p className="bio">{t.bio}</p><a className="text-link" href="#kontakt">{t.contact} ↗</a></div><a className="film" href="https://www.youtube.com/watch?v=jNgZZCfBJ-k" target="_blank" rel="noreferrer"><div className="strings" aria-hidden="true">{Array.from({length:6},(_,i)=><i key={i} />)}</div><span className="eyebrow">{t.video}</span><span className="play" aria-hidden="true">▷</span><div className="film-caption"><h3>Fighters</h3><span>{t.watch} ↗</span><small>{t.videoNote}</small></div></a></section>
+      <section className="about section" id="henning"><div><p className="eyebrow">{t.human}</p><h2>{t.humanTitle}<br /><em>{t.humanLast}</em></h2><p className="bio">{t.bio}</p><a className="text-link" href="#kontakt">{t.contact} ↗</a></div><div className="approach"><p className="eyebrow">{t.approach}</p><span className="approach-mark" aria-hidden="true">AI</span><h3>{t.approachText}</h3></div></section>
 
       <section className="craft section" id="arbeid"><p className="eyebrow">{t.craft}</p><h2>{t.craftTitle}</h2><div className="service-grid">{t.services.map(([name, description])=><article key={name}><h3>{name}</h3><p>{description}</p></article>)}</div></section>
 
