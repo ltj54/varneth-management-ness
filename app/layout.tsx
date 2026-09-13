@@ -6,7 +6,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://ltj54.github.io/varneth-management-ness"),
   title: "Varneth Management Ness | Music, People, Opportunities",
-  description: "Forslag til nettside for Varneth Management Ness.",
+  description: "Henning Stockmann Ness — musikkprodusent, KI-låtskriver og gitarist. Utforsk Varneths musikkprosjekter, utgivelser og rådgivning innen KI-musikkproduksjon.",
   icons: { icon: "/favicon.svg" },
 };
 
