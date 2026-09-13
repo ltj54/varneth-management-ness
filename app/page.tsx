@@ -10,6 +10,7 @@ const copy = {
     intro: "Varneth Management Ness samler Henning Stockmann Ness’ arbeid som KI-komponist og produsent av KI-musikk.",
     listen: "Utforsk musikken", contact: "Ta kontakt", pause: "Pause bevegelse", resume: "Start bevegelse",
     projects: "Musikkprosjekter", projectTitle: "To navn. Egen nerve.", projectIntro: "Hennings egne musikkprosjekter. Utforsk lyden på Spotify.",
+    covers: "Coverbilder", coversTitle: "Musikken i bilder.", coversIntro: "Et utvalg coverbilder fra Hennings egne produksjoner.", coverOpen: "Åpne omslaget i full størrelse",
     ai: "Eget KI-musikkprosjekt", search: "Søk på Spotify",
     human: "Bak uttrykket", humanTitle: "Henning", humanLast: "Stockmann Ness.",
     bio: "Henning er KI-komponist og driver med produksjon og utgivelse av KI-musikk. Gjennom Varneth Management Ness utvikler han egne prosjekter og tilbyr rådgivning innen KI-musikkproduksjon.",
@@ -25,6 +26,7 @@ const copy = {
     intro: "Varneth Management Ness brings together Henning Stockmann Ness’ work as an AI composer and AI music producer.",
     listen: "Explore the music", contact: "Get in touch", pause: "Pause motion", resume: "Start motion",
     projects: "Music projects", projectTitle: "Two names. Their own pulse.", projectIntro: "Henning’s own music projects. Explore the sound on Spotify.",
+    covers: "Cover artwork", coversTitle: "The visual side of the music.", coversIntro: "Selected cover artwork from Henning’s own productions.", coverOpen: "Open full-size artwork",
     ai: "Original AI music project", search: "Search on Spotify",
     human: "Behind the sound", humanTitle: "Henning", humanLast: "Stockmann Ness.",
     bio: "Henning is an AI composer working in AI music production and releases. Through Varneth Management Ness, he develops his own projects and offers consulting in AI music production.",
@@ -36,6 +38,12 @@ const copy = {
   },
 };
 const search = (name: string) => `https://open.spotify.com/search/${encodeURIComponent(name)}`;
+const covers = [
+  { file: "home-to-you", title: "Home to You", project: "Black Veil Hearts", size: 1254 },
+  { file: "scars-dont-lie", title: "Scars Don’t Lie", project: "Broken Veil", size: 724 },
+  { file: "until-you-return", title: "Until You Return", project: "Broken Veil", size: 1254 },
+  { file: "abyssal", title: "Abyssal", project: "Broken Veil", size: 1254 },
+];
 const basePath = process.env.NODE_ENV === "production" ? "/varneth-management-ness" : "";
 
 export default function Home() {
@@ -67,6 +75,19 @@ export default function Home() {
         <div className="section-heading"><div><p className="eyebrow">{t.projects}</p><h2>{t.projectTitle}</h2></div><p>{t.projectIntro}</p></div>
         <div className="project-grid">
           {[{ name: "Broken Veil", logo: "broken-veil.png", width: 1536, height: 1024 }, { name: "Black Veil Hearts", logo: "black-veil-hearts.png", width: 1254, height: 1254 }].map(({ name, logo, width, height }, i) => <a className={`project project-${i}`} href={search(name)} target="_blank" rel="noreferrer" key={name}><div className="project-art project-logo"><Image src={`${basePath}/${logo}`} alt={`${name} – ${language === "nb" ? "prosjektlogo" : "project logo"}`} width={width} height={height} sizes="(max-width: 600px) 90vw, 44vw" /></div><div className="project-content"><p className="eyebrow">{t.ai}</p><h3>{name}</h3><span className="project-link">{t.search}<b aria-hidden="true">↗</b></span></div></a>)}
+        </div>
+      </section>
+
+      <section className="cover-gallery section" id="coverbilder" aria-labelledby="covers-title">
+        <div className="section-heading"><div><p className="eyebrow">{t.covers}</p><h2 id="covers-title">{t.coversTitle}</h2></div><p>{t.coversIntro}</p></div>
+        <div className="cover-grid">
+          {covers.map(cover => <figure className="cover-card" key={cover.file}>
+            <a href={`${basePath}/covers/${cover.file}.png`} target="_blank" rel="noreferrer" aria-label={`${t.coverOpen}: ${cover.title}`}>
+              <Image src={`${basePath}/covers/${cover.file}.png`} alt={`${cover.project} — ${cover.title}`} width={cover.size} height={cover.size} sizes="(max-width: 600px) 88vw, 43vw" />
+              <span className="cover-open">{t.coverOpen} <span aria-hidden="true">↗</span></span>
+            </a>
+            <figcaption><p className="eyebrow">{cover.project}</p><h3>{cover.title}</h3></figcaption>
+          </figure>)}
         </div>
       </section>
 

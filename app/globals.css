@@ -1,5 +1,16 @@
 @import "tailwindcss";
 
+.cover-gallery { background: #0d0e0e; }
+.cover-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 3rem 2rem; }
+.cover-card { margin: 0; min-width: 0; }
+.cover-card > a { display: block; border: 1px solid var(--line); background: var(--black); transition: border-color .3s; }
+.cover-card > a:hover { border-color: var(--gold); }
+.cover-card img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; }
+.cover-open { display: flex; justify-content: space-between; gap: 1rem; padding: 1rem 1.2rem; color: var(--gold); font-size: .7rem; }
+.cover-card figcaption { padding-top: 1.2rem; }
+.cover-card h3 { margin-top: .4rem; font-size: clamp(1.8rem, 3vw, 2.6rem); }
+@media (max-width: 600px) { .cover-grid { grid-template-columns: 1fr; gap: 2rem; } }
+
 .project-art.project-logo{height:auto;aspect-ratio:1;background:#050505;padding:1rem}
 .project-logo img{width:100%;height:100%;object-fit:contain}
 .approach{min-height:25rem;padding:2rem;border:1px solid var(--line);display:flex;flex-direction:column;justify-content:space-between;background:radial-gradient(ellipse at 80% 0,#72533140,transparent 70%),#101010}
