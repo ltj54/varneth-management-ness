@@ -10,7 +10,7 @@ const copy = {
     title: "Musikk med", italic: "egen signatur.",
     intro: "Varneth Management Ness er foretaket bak KI-musikkproduksjon, utgivelser og rådgivning. Henning Stockmann Ness står bak virksomheten og utvikler egne musikkprosjekter.",
     listen: "Utforsk musikken", contact: "Ta kontakt",
-    projects: "Varneth Management Ness", projectTitle: "Prosjekter og utgivelser.", projectIntro: "Foretakets egne musikkprosjekter. Utforsk lyden på Spotify.",
+    projects: "Varneth Management Ness", projectTitle: "Prosjekter og utgivelser.", projectIntro: "Foretakets egne musikkprosjekter. Utforsk lyden på Spotify.", featuredLabel: "Utvalgt låt", featuredText: "Crown of Cracks fra Black Veil Hearts.", featuredLink: "Hør låten på Spotify",
     covers: "Coverbilder", coversTitle: "Utvalgte coverbilder.", coversIntro: "Tre coverbilder hører til Broken Veil. «Home to You» hører til Black Veil Hearts.", coverOpen: "Åpne omslaget i full størrelse",
     ai: "Eget KI-musikkprosjekt", search: "Søk på Spotify",
     human: "Bak uttrykket", humanTitle: "Henning", humanLast: "Stockmann Ness.",
@@ -26,7 +26,7 @@ const copy = {
     title: "Music with", italic: "its own signature.",
     intro: "Varneth Management Ness is the company behind AI music production, releases and consulting. Henning Stockmann Ness leads the company and develops its original music projects.",
     listen: "Explore the music", contact: "Get in touch",
-    projects: "Varneth Management Ness", projectTitle: "Projects and releases.", projectIntro: "The company’s original music projects. Explore the sound on Spotify.",
+    projects: "Varneth Management Ness", projectTitle: "Projects and releases.", projectIntro: "The company’s original music projects. Explore the sound on Spotify.", featuredLabel: "Featured track", featuredText: "Crown of Cracks by Black Veil Hearts.", featuredLink: "Listen on Spotify",
     covers: "Cover artwork", coversTitle: "Selected artwork.", coversIntro: "Three covers belong to Broken Veil. «Home to You» belongs to Black Veil Hearts.", coverOpen: "Open full-size artwork",
     ai: "Original AI music project", search: "Search on Spotify",
     human: "Behind the sound", humanTitle: "Henning", humanLast: "Stockmann Ness.",
@@ -39,6 +39,7 @@ const copy = {
   },
 };
 const search = (name: string) => `https://open.spotify.com/search/${encodeURIComponent(name)}`;
+const featuredTrack = "https://open.spotify.com/track/4G7Vy4gDtq8GbPiS72hXqZ";
 const covers = [
   { file: "home-to-you", title: "Home to You", project: "Black Veil Hearts", spotifyName: "black veil hart by emmely", size: 1254 },
   { file: "scars-dont-lie", title: "Scars Don’t Lie", project: "Broken Veil", spotifyName: "brøken veil", size: 724 },
@@ -109,7 +110,8 @@ export default function Home() {
             <div className="cover-modal-caption"><span>{selectedCover.project}</span><h3 id="cover-modal-title">{selectedCover.title}</h3><a className="text-link" href={search(`${selectedCover.spotifyName} ${selectedCover.title}`)} target="_blank" rel="noreferrer">{t.search} ↗</a></div>
           </div>
         </dialog>}
-      </div>
+        </div>
+        <div className="featured-track"><div><p className="eyebrow">{t.featuredLabel}</p><h3>{t.featuredText}</h3></div><a className="button outline" href={featuredTrack} target="_blank" rel="noreferrer">{t.featuredLink} <span aria-hidden="true">↗</span></a></div>
       </section>
 
       <section className="about section" id="henning"><div><p className="eyebrow">{t.human}</p><h2>{t.humanTitle}<br /><em>{t.humanLast}</em></h2><p className="bio">{t.bio}</p><p className="bio-note">{t.training}</p><a className="text-link" href="#kontakt">{t.contact} ↗</a></div></section>
