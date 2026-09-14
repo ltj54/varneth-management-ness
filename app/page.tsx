@@ -40,9 +40,9 @@ const copy = {
 const search = (name: string) => `https://open.spotify.com/search/${encodeURIComponent(name)}`;
 const covers = [
   { file: "home-to-you", title: "Home to You", project: "Black Veil Hart", size: 1254 },
-  { file: "scars-dont-lie", title: "Scars Don’t Lie", project: "Brøken Veil", size: 724 },
-  { file: "until-you-return", title: "Until You Return", project: "Brøken Veil", size: 1254 },
-  { file: "abyssal", title: "Abyssal", project: "Brøken Veil", size: 1254 },
+  { file: "scars-dont-lie", title: "Scars Don’t Lie", project: "Broken Veil", size: 724 },
+  { file: "until-you-return", title: "Until You Return", project: "Broken Veil", size: 1254 },
+  { file: "abyssal", title: "Abyssal", project: "Broken Veil", size: 1254 },
 ];
 const basePath = process.env.NODE_ENV === "production" ? "/varneth-management-ness" : "";
 
@@ -52,12 +52,6 @@ export default function Home() {
   const [selectedCover, setSelectedCover] = useState<(typeof covers)[number] | null>(null);
   const t = copy[language];
   useEffect(() => { document.documentElement.lang = language; }, [language]);
-  useEffect(() => {
-    if (!selectedCover) return;
-    const closeOnEscape = (event: KeyboardEvent) => { if (event.key === "Escape") setSelectedCover(null); };
-    window.addEventListener("keydown", closeOnEscape);
-    return () => window.removeEventListener("keydown", closeOnEscape);
-  }, [selectedCover]);
 
   return (
     <main className={paused ? "motion-paused" : ""}>
@@ -81,7 +75,7 @@ export default function Home() {
       <section className="music section" id="musikk">
         <div className="section-heading"><div><p className="eyebrow">{t.projects}</p><h2>{t.projectTitle}</h2></div><p>{t.projectIntro}</p></div>
         <div className="project-grid">
-          {[{ name: "Brøken Veil", logo: "broken-veil.png", width: 1536, height: 1024 }, { name: "Black Veil Hart", logo: "black-veil-hearts.png", width: 1254, height: 1254 }].map(({ name, logo, width, height }, i) => <a className={`project project-${i}`} href={search(name)} target="_blank" rel="noreferrer" key={name}><div className="project-art project-logo"><Image src={`${basePath}/${logo}`} alt={`${name} – ${language === "nb" ? "prosjektlogo" : "project logo"}`} width={width} height={height} sizes="(max-width: 600px) 90vw, 44vw" /></div><div className="project-content"><p className="eyebrow">{t.ai}</p><h3>{name}</h3><span className="project-link">{t.search}<b aria-hidden="true">↗</b></span></div></a>)}
+          {[{ name: "Broken Veil", logo: "broken-veil.png", width: 1536, height: 1024 }, { name: "Black Veil Hart", logo: "black-veil-hearts.png", width: 1254, height: 1254 }].map(({ name, logo, width, height }, i) => <a className={`project project-${i}`} href={search(name)} target="_blank" rel="noreferrer" key={name}><div className="project-art project-logo"><Image src={`${basePath}/${logo}`} alt={`${name} – ${language === "nb" ? "prosjektlogo" : "project logo"}`} width={width} height={height} sizes="(max-width: 600px) 90vw, 44vw" /></div><div className="project-content"><p className="eyebrow">{t.ai}</p><h3>{name}</h3><span className="project-link">{t.search}<b aria-hidden="true">↗</b></span></div></a>)}
         </div>
       </section>
 
@@ -96,13 +90,13 @@ export default function Home() {
             <figcaption><p className="eyebrow">{cover.project}</p><h3>{cover.title}</h3></figcaption>
           </figure>)}
         </div>
-        {selectedCover && <div className="cover-modal" role="dialog" aria-modal="true" aria-labelledby="cover-modal-title" onClick={(event) => { if (event.target === event.currentTarget) setSelectedCover(null); }}>
+        {selectedCover && <dialog className="cover-modal" open aria-labelledby="cover-modal-title" onCancel={() => setSelectedCover(null)} onClick={(event) => { if (event.target === event.currentTarget) setSelectedCover(null); }}>
           <div className="cover-modal-content">
             <button className="cover-close" type="button" onClick={() => setSelectedCover(null)} aria-label={language === "nb" ? "Lukk coverbildet" : "Close cover artwork"}>×</button>
             <Image src={`${basePath}/covers/${selectedCover.file}.png`} alt={`${selectedCover.project} — ${selectedCover.title}`} width={selectedCover.size} height={selectedCover.size} priority sizes="(max-width: 900px) 92vw, 70vw" />
             <div className="cover-modal-caption"><span>{selectedCover.project}</span><h3 id="cover-modal-title">{selectedCover.title}</h3></div>
           </div>
-        </div>}
+        </dialog>}
       </section>
 
       <section className="about section" id="henning"><div><p className="eyebrow">{t.human}</p><h2>{t.humanTitle}<br /><em>{t.humanLast}</em></h2><p className="bio">{t.bio}</p><a className="text-link" href="#kontakt">{t.contact} ↗</a></div><div className="approach"><p className="eyebrow">{t.approach}</p><span className="approach-mark" aria-hidden="true">AI</span><h3>{t.approachText}</h3></div></section>
@@ -112,7 +106,7 @@ export default function Home() {
       <aside className="inspiration section"><div><p className="eyebrow">{t.inspiration}</p><small>{t.inspirationNote}</small></div><div className="inspiration-links">{["Gravel N Bones", "Iron West", "Abdysall"].map(name=><a href={search(name)} target="_blank" rel="noreferrer" key={name}>{name}<small>{t.inspirationLink} ↗</small></a>)}</div></aside>
 
       <section className="contact section" id="kontakt"><p className="eyebrow">Varneth Management Ness</p><h2>{t.end}<br /><em>{t.endItalic}</em></h2><p>{t.endText}</p><a className="button" href="mailto:bhstockmann@gmail.com">{t.email}<span aria-hidden="true">↗</span></a><a className="email" href="mailto:bhstockmann@gmail.com">bhstockmann@gmail.com</a></section>
-      <footer><a className="footer-brand" href="#top">VARNETH</a><span>{t.footer}</span><a href="https://www.ltj-production.no/" target="_blank" rel="noreferrer">Nettside laget av LTJ Production</a><small>© {new Date().getFullYear()} Varneth Management Ness</small></footer>
+      <footer><a className="footer-brand" href="#top">VARNETH</a><span>{t.footer}</span><small>© {new Date().getFullYear()} Varneth Management Ness</small></footer>
     </main>
   );
 }
