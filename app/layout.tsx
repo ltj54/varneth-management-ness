@@ -6,7 +6,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://ltj54.github.io/varneth-management-ness"),
   title: "Varneth Management Ness | Music, People, Opportunities",
-  description: "Varneth Management Ness — KI-musikkproduksjon, utgivelser, rådgivning og prosjektene Brøken Veil og Black Veil Hart.",
+  description: "Varneth Management Ness — KI-musikkproduksjon, utgivelser, rådgivning og prosjektene Broken Veil og Black Veil Hart.",
   icons: { icon: `${process.env.NODE_ENV === "production" ? "/varneth-management-ness" : ""}/favicon.svg` },
 };
 

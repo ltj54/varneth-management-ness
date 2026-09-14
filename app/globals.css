@@ -9,7 +9,7 @@
 .cover-open { display: flex; justify-content: space-between; gap: 1rem; padding: 1rem 1.2rem; color: var(--gold); font-size: .7rem; }
 .cover-card figcaption { padding-top: 1.2rem; }
 .cover-card h3 { margin-top: .4rem; font-size: clamp(1.8rem, 3vw, 2.6rem); }
-.cover-modal { position: fixed; z-index: 30; inset: 0; display: grid; place-items: center; padding: 2rem; background: rgba(3, 3, 3, .92); backdrop-filter: blur(18px); animation: modal-in .25s ease-out; }
+.cover-modal { position: fixed; z-index: 30; inset: 0; display: grid; place-items: center; width: 100%; max-width: none; height: 100%; max-height: none; margin: 0; padding: 2rem; border: 0; background: rgba(3, 3, 3, .92); backdrop-filter: blur(18px); animation: modal-in .25s ease-out; }
 .cover-modal-content { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(12rem, 17rem); gap: 2rem; align-items: end; width: min(70rem, 100%); max-height: calc(100vh - 4rem); padding: 1.5rem; border: 1px solid var(--line); background: #101010; box-shadow: 0 1rem 6rem #000; }
 .cover-modal-content img { width: 100%; max-height: calc(100vh - 7rem); object-fit: contain; }
 .cover-close { position: absolute; z-index: 1; top: .75rem; right: .75rem; display: grid; width: 2.5rem; height: 2.5rem; place-items: center; border: 1px solid var(--gold); background: #080909; color: var(--gold); font-size: 1.6rem; line-height: 1; }
