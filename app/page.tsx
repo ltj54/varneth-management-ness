@@ -1,17 +1,17 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ContactForm } from "./contact-form";
 
 const copy = {
   nb: {
-    nav: ["Musikken", "Mennesket", "Kontakt"], label: "KI-komposisjon · Musikkproduksjon · Rådgivning",
+    nav: ["Musikken", "Om Henning", "Kontakt"], label: "KI-komposisjon · Musikkproduksjon · Rådgivning",
     title: "Musikk med", italic: "egen signatur.",
-    intro: "Varneth Management Ness er foretaket bak KI-musikkproduksjon, utgivelser, rådgivning og egne musikkprosjekter. Henning Stockmann Ness står bak arbeidet.",
-    listen: "Utforsk musikken", contact: "Ta kontakt", pause: "Pause bevegelse", resume: "Start bevegelse",
-    projects: "Musikkprosjekter", projectTitle: "To navn. Egen nerve.", projectIntro: "Hennings egne musikkprosjekter. Utforsk lyden på Spotify.",
-    covers: "Coverbilder", coversTitle: "Musikken i bilder.", coversIntro: "Et utvalg coverbilder fra Hennings egne produksjoner.", coverOpen: "Åpne omslaget i full størrelse",
+    intro: "Musikkprosjekter og utgivelser fra KI-komponist Henning Stockmann Ness. Utforsk coverkunsten og finn musikken på Spotify.",
+    listen: "Utforsk musikken", contact: "Ta kontakt",
+    projects: "Musikkprosjekter", projectTitle: "Prosjekter og utgivelser.", projectIntro: "Hennings egne musikkprosjekter. Utforsk lyden på Spotify.",
+    covers: "Coverbilder", coversTitle: "Utvalgte coverbilder.", coversIntro: "Et utvalg coverbilder fra Hennings egne produksjoner.", coverOpen: "Åpne omslaget i full størrelse",
     ai: "Eget KI-musikkprosjekt", search: "Søk på Spotify",
     human: "Bak uttrykket", humanTitle: "Henning", humanLast: "Stockmann Ness.",
     bio: "Henning er KI-komponist og driver med produksjon og utgivelse av KI-musikk. Gjennom Varneth Management Ness utvikler han egne prosjekter og tilbyr rådgivning innen KI-musikkproduksjon.",
@@ -19,15 +19,15 @@ const copy = {
     craft: "Arbeidet", craftTitle: "Fra idé til uttrykk.",
     services: [["KI-musikkproduksjon", "Produksjon og utgivelse av KI-musikk gjennom egne prosjekter."], ["KI-komposisjon", "Musikalske ideer og komposisjoner utviklet med KI som kreativt verktøy."], ["Rådgivning", "Ta kontakt om rådgivning innen KI-musikkproduksjon og arbeidet med egne prosjekter."]],
     inspiration: "På Hennings spilleliste", inspirationNote: "Musikalsk inspirasjon · uavhengige artister", inspirationLink: "Spotify-søk",
-    end: "Har du et", endItalic: "prosjekt?", endText: "Vil du snakke om KI-musikk, produksjon eller rådgivning? Ta kontakt med Henning.", email: "Send en e-post", footer: "KI-komposisjon · Musikkproduksjon · Rådgivning",
+    end: "Har du et", endItalic: "prosjekt?", endText: "Vil du snakke om KI-musikk, produksjon eller rådgivning? Ta kontakt med Henning.", email: "Skriv til Henning", footer: "KI-komposisjon · Musikkproduksjon · Rådgivning",
   },
   en: {
-    nav: ["The music", "The person", "Contact"], label: "AI composition · Music production · Consulting",
-    title: "Dark tones.", italic: "A voice of its own.",
-    intro: "Varneth Management Ness is the company behind AI music production, releases, consulting and original music projects, led by Henning Stockmann Ness.",
-    listen: "Explore the music", contact: "Get in touch", pause: "Pause motion", resume: "Start motion",
-    projects: "Music projects", projectTitle: "Two names. Their own pulse.", projectIntro: "Henning’s own music projects. Explore the sound on Spotify.",
-    covers: "Cover artwork", coversTitle: "The visual side of the music.", coversIntro: "Selected cover artwork from Henning’s own productions.", coverOpen: "Open full-size artwork",
+    nav: ["The music", "About Henning", "Contact"], label: "AI composition · Music production · Consulting",
+    title: "Music with", italic: "its own signature.",
+    intro: "Music projects and releases by AI composer Henning Stockmann Ness. Explore the artwork and find the music on Spotify.",
+    listen: "Explore the music", contact: "Get in touch",
+    projects: "Music projects", projectTitle: "Projects and releases.", projectIntro: "Henning’s own music projects. Explore the sound on Spotify.",
+    covers: "Cover artwork", coversTitle: "Selected artwork.", coversIntro: "Selected cover artwork from Henning’s own productions.", coverOpen: "Open full-size artwork",
     ai: "Original AI music project", search: "Search on Spotify",
     human: "Behind the sound", humanTitle: "Henning", humanLast: "Stockmann Ness.",
     bio: "Henning is an AI composer working in AI music production and releases. Through Varneth Management Ness, he develops his own projects and offers consulting in AI music production.",
@@ -35,7 +35,7 @@ const copy = {
     craft: "The craft", craftTitle: "From idea to expression.",
     services: [["AI music production", "Producing and releasing AI music through original projects."], ["AI composition", "Musical ideas and compositions developed with AI as a creative tool."], ["Consulting", "Get in touch about AI music production consulting and developing your own projects."]],
     inspiration: "On Henning’s playlist", inspirationNote: "Musical inspiration · independent artists", inspirationLink: "Spotify search",
-    end: "Have a", endItalic: "project?", endText: "Want to talk about AI music, production or consulting? Get in touch with Henning.", email: "Send an email", footer: "AI composition · Music production · Consulting",
+    end: "Have a", endItalic: "project?", endText: "Want to talk about AI music, production or consulting? Get in touch with Henning.", email: "Write to Henning", footer: "AI composition · Music production · Consulting",
   },
 };
 const search = (name: string) => `https://open.spotify.com/search/${encodeURIComponent(name)}`;
@@ -49,13 +49,26 @@ const basePath = process.env.NODE_ENV === "production" ? "/varneth-management-ne
 
 export default function Home() {
   const [language, setLanguage] = useState<"nb" | "en">("nb");
-  const [paused, setPaused] = useState(false);
   const [selectedCover, setSelectedCover] = useState<(typeof covers)[number] | null>(null);
+  const coverDialog = useRef<HTMLDialogElement>(null);
   const t = copy[language];
+  useEffect(() => {
+    if (!selectedCover) return;
+    const dialog = coverDialog.current;
+    const previous = document.activeElement;
+    const overflow = document.body.style.overflow;
+    dialog?.showModal();
+    document.body.style.overflow = "hidden";
+    return () => {
+      dialog?.close();
+      document.body.style.overflow = overflow;
+      if (previous instanceof HTMLElement) previous.focus();
+    };
+  }, [selectedCover]);
   useEffect(() => { document.documentElement.lang = language; }, [language]);
 
   return (
-    <main className={paused ? "motion-paused" : ""}>
+    <main>
       <header className="site-header">
         <a className="wordmark" href="#top" aria-label="Varneth Management Ness"><strong>VARNETH</strong><small>MANAGEMENT NESS</small></a>
         <nav aria-label={language === "nb" ? "Hovedmeny" : "Main navigation"}>
@@ -70,7 +83,7 @@ export default function Home() {
         <div className="atmosphere" aria-hidden="true"><i /><i /><i /></div>
         <div className="hero-copy"><p className="eyebrow">{t.label}</p><h1>{t.title}<em>{t.italic}</em></h1><p className="intro">{t.intro}</p><div className="hero-actions"><a className="button" href="#musikk">{t.listen}<span aria-hidden="true">↘</span></a><a className="text-link" href="#kontakt">{t.contact} ↗</a></div></div>
         <div className="emblem"><div className="halo" aria-hidden="true" /><Image src={`${basePath}/varneth-logo.jpg`} alt="Varneth Management — Music, People, Opportunities, Together. Building a Brighter Tomorrow." width={879} height={809} priority sizes="(max-width: 900px) 90vw, 48vw" /></div>
-        <div className="hero-bottom"><span>INDEPENDENT SOUND / NORWAY</span><button onClick={() => setPaused(!paused)} aria-pressed={paused}>{paused ? "▷" : "Ⅱ"} {paused ? t.resume : t.pause}</button><a href="#musikk" aria-label={t.listen}>↓</a></div>
+        <div className="hero-bottom"><span>INDEPENDENT SOUND / NORWAY</span><a href="#musikk" aria-label={t.listen}>↓</a></div>
       </section>
 
       <section className="music section" id="musikk">
@@ -78,9 +91,7 @@ export default function Home() {
         <div className="project-grid">
           {[{ name: "Broken Veil", logo: "broken-veil.png", width: 1536, height: 1024 }, { name: "Black Veil Hart", logo: "black-veil-hearts.png", width: 1254, height: 1254 }].map(({ name, logo, width, height }, i) => <a className={`project project-${i}`} href={search(name)} target="_blank" rel="noreferrer" key={name}><div className="project-art project-logo"><Image src={`${basePath}/${logo}`} alt={`${name} – ${language === "nb" ? "prosjektlogo" : "project logo"}`} width={width} height={height} sizes="(max-width: 600px) 90vw, 44vw" /></div><div className="project-content"><p className="eyebrow">{t.ai}</p><h3>{name}</h3><span className="project-link">{t.search}<b aria-hidden="true">↗</b></span></div></a>)}
         </div>
-      </section>
-
-      <section className="cover-gallery section" id="coverbilder" aria-labelledby="covers-title">
+      <div className="cover-gallery" id="coverbilder" aria-labelledby="covers-title">
         <div className="section-heading"><div><p className="eyebrow">{t.covers}</p><h2 id="covers-title">{t.coversTitle}</h2></div><p>{t.coversIntro}</p></div>
         <div className="cover-grid">
           {covers.map(cover => <figure className="cover-card" key={cover.file}>
@@ -91,22 +102,22 @@ export default function Home() {
             <figcaption><p className="eyebrow">{cover.project}</p><h3>{cover.title}</h3></figcaption>
           </figure>)}
         </div>
-        {selectedCover && <dialog className="cover-modal" open aria-labelledby="cover-modal-title" onCancel={() => setSelectedCover(null)} onClick={(event) => { if (event.target === event.currentTarget) setSelectedCover(null); }}>
+        {selectedCover && <dialog ref={coverDialog} className="cover-modal" aria-labelledby="cover-modal-title" onCancel={() => setSelectedCover(null)} onClose={() => setSelectedCover(null)}>
           <div className="cover-modal-content">
             <button className="cover-close" type="button" onClick={() => setSelectedCover(null)} aria-label={language === "nb" ? "Lukk coverbildet" : "Close cover artwork"}>×</button>
             <Image src={`${basePath}/covers/${selectedCover.file}.png`} alt={`${selectedCover.project} — ${selectedCover.title}`} width={selectedCover.size} height={selectedCover.size} priority sizes="(max-width: 900px) 92vw, 70vw" />
-            <div className="cover-modal-caption"><span>{selectedCover.project}</span><h3 id="cover-modal-title">{selectedCover.title}</h3></div>
+            <div className="cover-modal-caption"><span>{selectedCover.project}</span><h3 id="cover-modal-title">{selectedCover.title}</h3><a className="text-link" href={search(`${selectedCover.project} ${selectedCover.title}`)} target="_blank" rel="noreferrer">{t.search} ↗</a></div>
           </div>
         </dialog>}
+      </div>
       </section>
 
-      <section className="about section" id="henning"><div><p className="eyebrow">{t.human}</p><h2>{t.humanTitle}<br /><em>{t.humanLast}</em></h2><p className="bio">{t.bio}</p><a className="text-link" href="#kontakt">{t.contact} ↗</a></div><div className="approach"><p className="eyebrow">{t.approach}</p><span className="approach-mark" aria-hidden="true">AI</span><h3>{t.approachText}</h3></div></section>
+      <section className="about section" id="henning"><div><p className="eyebrow">{t.human}</p><h2>{t.humanTitle}<br /><em>{t.humanLast}</em></h2><p className="bio">{t.bio}</p><a className="text-link" href="#kontakt">{t.contact} ↗</a></div></section>
 
-      <section className="craft section" id="arbeid"><p className="eyebrow">{t.craft}</p><h2>{t.craftTitle}</h2><div className="service-grid">{t.services.map(([name, description])=><article key={name}><h3>{name}</h3><p>{description}</p></article>)}</div></section>
 
       <aside className="inspiration section"><div><p className="eyebrow">{t.inspiration}</p><small>{t.inspirationNote}</small></div><div className="inspiration-links">{["Gravel N Bones", "Iron West", "Abdysall"].map(name=><a href={search(name)} target="_blank" rel="noreferrer" key={name}>{name}<small>{t.inspirationLink} ↗</small></a>)}</div></aside>
 
-      <section className="contact section" id="kontakt"><p className="eyebrow">Varneth Management Ness</p><h2>{t.end}<br /><em>{t.endItalic}</em></h2><p>{t.endText}</p><ContactForm className="button" label={t.email} /><a className="email" href="mailto:bhstockmann@gmail.com">bhstockmann@gmail.com</a></section>
+      <section className="contact section" id="kontakt"><p className="eyebrow">Varneth Management Ness</p><h2>{t.end}<br /><em>{t.endItalic}</em></h2><p>{t.endText}</p><ContactForm className="button" label={t.email} language={language} /><a className="email" href="mailto:bhstockmann@gmail.com">bhstockmann@gmail.com</a></section>
       <footer><a className="footer-brand" href="#top">VARNETH</a><span>{t.footer}</span><small>© {new Date().getFullYear()} Varneth Management Ness</small></footer>
     </main>
   );

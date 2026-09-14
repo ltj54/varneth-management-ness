@@ -1,5 +1,49 @@
 @import "tailwindcss";
 
+/* Music-led layout: compact project identities and prominent artwork. */
+.music .project { display:grid; grid-template-columns:6rem minmax(0,1fr); align-items:center; }
+.music .project-art.project-logo { height:6rem; aspect-ratio:1; padding:.5rem; }
+.music .project-content { padding:1.25rem; background:transparent; }
+.music .project-content h3 { font-size:clamp(1.5rem,2.5vw,2.2rem); margin:.25rem 0 .75rem; }
+.music .project-content .eyebrow { display:none; }
+.music .cover-gallery { margin-top:3rem; background:transparent; }
+.music .cover-grid { grid-template-columns:repeat(4,minmax(0,1fr)); gap:1.5rem; }
+.music .cover-card h3 { font-size:clamp(1.4rem,2vw,2rem); }
+.music .cover-open { font-size:.8rem; padding:.8rem; }
+.music .cover-gallery h2 { font-size:clamp(2rem,3vw,3rem); }
+main .hero { min-height:auto; padding-top:3rem; padding-bottom:6rem; }
+main .hero h1 { font-size:clamp(3.2rem,5.3vw,6rem); }
+main .emblem { max-width:30rem; justify-self:center; }
+main .about { display:block; }
+main .about>div { max-width:48rem; margin:auto; }
+main .bio { max-width:42rem; font-size:1rem; }
+main .eyebrow { font-size:.75rem; }
+main .inspiration { padding-top:2rem; padding-bottom:2rem; }
+main .inspiration-links>a { font-size:1.2rem; }
+main .inspiration small, main footer small, main footer span { font-size:.8rem; }
+main .contact h2 { font-size:clamp(3rem,6vw,5rem); }
+main .cover-modal { overflow-y:auto; }
+main .cover-modal::backdrop { background:#000c; }
+main .cover-modal-content { max-height:none; }
+.cover-modal-caption .text-link { display:inline-block; margin-top:1.5rem; }
+.contact-form fieldset { display:grid; gap:1.25rem; border:0; padding:0; margin:0; min-width:0; }
+.contact-form fieldset:disabled { opacity:.65; }
+.contact-form .form-note, .contact-form label { font-size:.85rem; }
+@media(max-width:900px) {
+  .music .cover-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  main .emblem { max-width:22rem; }
+}
+@media(max-width:600px) {
+  main .site-header { flex-wrap:wrap; gap:.5rem 1rem; }
+  main .site-header nav { display:flex; order:3; width:100%; justify-content:space-between; gap:.5rem; }
+  main .site-header nav a { padding:.8rem .25rem; min-height:44px; }
+  main .hero .eyebrow { font-size:.7rem; }
+  .music .cover-grid { gap:1.5rem .75rem; }
+  .music .cover-open { font-size:.75rem; }
+  .music .cover-card .eyebrow { font-size:.65rem; letter-spacing:.08em; }
+  .music .project-grid { gap:.75rem; }
+}
+
 .cover-gallery { background: #0d0e0e; }
 .cover-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 3rem 2rem; }
 .cover-card { margin: 0; min-width: 0; }
