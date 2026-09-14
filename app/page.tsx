@@ -7,7 +7,7 @@ const copy = {
   nb: {
     nav: ["Musikken", "Mennesket", "Kontakt"], label: "KI-komposisjon · Musikkproduksjon · Rådgivning",
     title: "Musikk med", italic: "egen signatur.",
-    intro: "Varneth Management Ness samler Henning Stockmann Ness’ arbeid som KI-komponist og produsent av KI-musikk.",
+    intro: "Varneth Management Ness er foretaket bak KI-musikkproduksjon, utgivelser, rådgivning og egne musikkprosjekter. Henning Stockmann Ness står bak arbeidet.",
     listen: "Utforsk musikken", contact: "Ta kontakt", pause: "Pause bevegelse", resume: "Start bevegelse",
     projects: "Musikkprosjekter", projectTitle: "To navn. Egen nerve.", projectIntro: "Hennings egne musikkprosjekter. Utforsk lyden på Spotify.",
     covers: "Coverbilder", coversTitle: "Musikken i bilder.", coversIntro: "Et utvalg coverbilder fra Hennings egne produksjoner.", coverOpen: "Åpne omslaget i full størrelse",
@@ -23,7 +23,7 @@ const copy = {
   en: {
     nav: ["The music", "The person", "Contact"], label: "AI composition · Music production · Consulting",
     title: "Dark tones.", italic: "A voice of its own.",
-    intro: "Varneth Management Ness brings together Henning Stockmann Ness’ work as an AI composer and AI music producer.",
+    intro: "Varneth Management Ness is the company behind AI music production, releases, consulting and original music projects, led by Henning Stockmann Ness.",
     listen: "Explore the music", contact: "Get in touch", pause: "Pause motion", resume: "Start motion",
     projects: "Music projects", projectTitle: "Two names. Their own pulse.", projectIntro: "Henning’s own music projects. Explore the sound on Spotify.",
     covers: "Cover artwork", coversTitle: "The visual side of the music.", coversIntro: "Selected cover artwork from Henning’s own productions.", coverOpen: "Open full-size artwork",
@@ -39,10 +39,10 @@ const copy = {
 };
 const search = (name: string) => `https://open.spotify.com/search/${encodeURIComponent(name)}`;
 const covers = [
-  { file: "home-to-you", title: "Home to You", project: "Black Veil Hearts", size: 1254 },
-  { file: "scars-dont-lie", title: "Scars Don’t Lie", project: "Broken Veil", size: 724 },
-  { file: "until-you-return", title: "Until You Return", project: "Broken Veil", size: 1254 },
-  { file: "abyssal", title: "Abyssal", project: "Broken Veil", size: 1254 },
+  { file: "home-to-you", title: "Home to You", project: "Black Veil Hart", size: 1254 },
+  { file: "scars-dont-lie", title: "Scars Don’t Lie", project: "Brøken Veil", size: 724 },
+  { file: "until-you-return", title: "Until You Return", project: "Brøken Veil", size: 1254 },
+  { file: "abyssal", title: "Abyssal", project: "Brøken Veil", size: 1254 },
 ];
 const basePath = process.env.NODE_ENV === "production" ? "/varneth-management-ness" : "";
 
@@ -81,7 +81,7 @@ export default function Home() {
       <section className="music section" id="musikk">
         <div className="section-heading"><div><p className="eyebrow">{t.projects}</p><h2>{t.projectTitle}</h2></div><p>{t.projectIntro}</p></div>
         <div className="project-grid">
-          {[{ name: "Broken Veil", logo: "broken-veil.png", width: 1536, height: 1024 }, { name: "Black Veil Hearts", logo: "black-veil-hearts.png", width: 1254, height: 1254 }].map(({ name, logo, width, height }, i) => <a className={`project project-${i}`} href={search(name)} target="_blank" rel="noreferrer" key={name}><div className="project-art project-logo"><Image src={`${basePath}/${logo}`} alt={`${name} – ${language === "nb" ? "prosjektlogo" : "project logo"}`} width={width} height={height} sizes="(max-width: 600px) 90vw, 44vw" /></div><div className="project-content"><p className="eyebrow">{t.ai}</p><h3>{name}</h3><span className="project-link">{t.search}<b aria-hidden="true">↗</b></span></div></a>)}
+          {[{ name: "Brøken Veil", logo: "broken-veil.png", width: 1536, height: 1024 }, { name: "Black Veil Hart", logo: "black-veil-hearts.png", width: 1254, height: 1254 }].map(({ name, logo, width, height }, i) => <a className={`project project-${i}`} href={search(name)} target="_blank" rel="noreferrer" key={name}><div className="project-art project-logo"><Image src={`${basePath}/${logo}`} alt={`${name} – ${language === "nb" ? "prosjektlogo" : "project logo"}`} width={width} height={height} sizes="(max-width: 600px) 90vw, 44vw" /></div><div className="project-content"><p className="eyebrow">{t.ai}</p><h3>{name}</h3><span className="project-link">{t.search}<b aria-hidden="true">↗</b></span></div></a>)}
         </div>
       </section>
 
@@ -112,7 +112,7 @@ export default function Home() {
       <aside className="inspiration section"><div><p className="eyebrow">{t.inspiration}</p><small>{t.inspirationNote}</small></div><div className="inspiration-links">{["Gravel N Bones", "Iron West", "Abdysall"].map(name=><a href={search(name)} target="_blank" rel="noreferrer" key={name}>{name}<small>{t.inspirationLink} ↗</small></a>)}</div></aside>
 
       <section className="contact section" id="kontakt"><p className="eyebrow">Varneth Management Ness</p><h2>{t.end}<br /><em>{t.endItalic}</em></h2><p>{t.endText}</p><a className="button" href="mailto:bhstockmann@gmail.com">{t.email}<span aria-hidden="true">↗</span></a><a className="email" href="mailto:bhstockmann@gmail.com">bhstockmann@gmail.com</a></section>
-      <footer><a className="footer-brand" href="#top">VARNETH</a><span>{t.footer}</span><small>© {new Date().getFullYear()} Varneth Management Ness</small></footer>
+      <footer><a className="footer-brand" href="#top">VARNETH</a><span>{t.footer}</span><a href="https://www.ltj-production.no/" target="_blank" rel="noreferrer">Nettside laget av LTJ Production</a><small>© {new Date().getFullYear()} Varneth Management Ness</small></footer>
     </main>
   );
 }
