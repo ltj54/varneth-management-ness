@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { ContactForm } from "./contact-form";
 
 const copy = {
   nb: {
@@ -105,7 +106,7 @@ export default function Home() {
 
       <aside className="inspiration section"><div><p className="eyebrow">{t.inspiration}</p><small>{t.inspirationNote}</small></div><div className="inspiration-links">{["Gravel N Bones", "Iron West", "Abdysall"].map(name=><a href={search(name)} target="_blank" rel="noreferrer" key={name}>{name}<small>{t.inspirationLink} ↗</small></a>)}</div></aside>
 
-      <section className="contact section" id="kontakt"><p className="eyebrow">Varneth Management Ness</p><h2>{t.end}<br /><em>{t.endItalic}</em></h2><p>{t.endText}</p><a className="button" href="mailto:bhstockmann@gmail.com">{t.email}<span aria-hidden="true">↗</span></a><a className="email" href="mailto:bhstockmann@gmail.com">bhstockmann@gmail.com</a></section>
+      <section className="contact section" id="kontakt"><p className="eyebrow">Varneth Management Ness</p><h2>{t.end}<br /><em>{t.endItalic}</em></h2><p>{t.endText}</p><ContactForm className="button" label={t.email} /><a className="email" href="mailto:bhstockmann@gmail.com">bhstockmann@gmail.com</a></section>
       <footer><a className="footer-brand" href="#top">VARNETH</a><span>{t.footer}</span><small>© {new Date().getFullYear()} Varneth Management Ness</small></footer>
     </main>
   );

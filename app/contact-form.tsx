@@ -51,6 +51,7 @@ export function ContactForm({
             <div>
               <p>Kontakt Varneth Management Ness</p>
               <h2 id={titleId}>Fortell om jobben</h2>
+              <p className="form-recipient">Mottaker: bhstockmann@gmail.com</p>
             </div>
             <button className="dialog-close" type="button" onClick={closeForm} aria-label="Lukk skjemaet">
               ×
