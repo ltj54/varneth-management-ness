@@ -40,7 +40,7 @@ const copy = {
 };
 const search = (name: string) => `https://open.spotify.com/search/${encodeURIComponent(name)}`;
 const covers = [
-  { file: "home-to-you", title: "Home to You", project: "Black Veil Hart", size: 1254 },
+  { file: "home-to-you", title: "Home to You", project: "Black Veil Hearts", size: 1254 },
   { file: "scars-dont-lie", title: "Scars Don’t Lie", project: "Broken Veil", size: 724 },
   { file: "until-you-return", title: "Until You Return", project: "Broken Veil", size: 1254 },
   { file: "abyssal", title: "Abyssal", project: "Broken Veil", size: 1254 },
@@ -89,7 +89,7 @@ export default function Home() {
       <section className="music section" id="musikk">
         <div className="section-heading"><div><p className="eyebrow">{t.projects}</p><h2>{t.projectTitle}</h2></div><p>{t.projectIntro}</p></div>
         <div className="project-grid">
-          {[{ name: "Broken Veil", logo: "broken-veil.png", width: 1536, height: 1024 }, { name: "Black Veil Hart", logo: "black-veil-hearts.png", width: 1254, height: 1254 }].map(({ name, logo, width, height }, i) => <a className={`project project-${i}`} href={search(name)} target="_blank" rel="noreferrer" key={name}><div className="project-art project-logo"><Image src={`${basePath}/${logo}`} alt={`${name} – ${language === "nb" ? "prosjektlogo" : "project logo"}`} width={width} height={height} sizes="(max-width: 600px) 90vw, 44vw" /></div><div className="project-content"><p className="eyebrow">{t.ai}</p><h3>{name}</h3><span className="project-link">{t.search}<b aria-hidden="true">↗</b></span></div></a>)}
+          {[{ name: "Broken Veil", logo: "broken-veil.png", width: 1536, height: 1024 }, { name: "Black Veil Hearts", logo: "black-veil-hearts.png", width: 1254, height: 1254 }].map(({ name, logo, width, height }, i) => <a className={`project project-${i}`} href={search(name)} target="_blank" rel="noreferrer" key={name}><div className="project-art project-logo"><Image src={`${basePath}/${logo}`} alt={`${name} – ${language === "nb" ? "prosjektlogo" : "project logo"}`} width={width} height={height} sizes="(max-width: 600px) 90vw, 44vw" /></div><div className="project-content"><p className="eyebrow">{t.ai}</p><h3>{name}</h3><span className="project-link">{t.search}<b aria-hidden="true">↗</b></span></div></a>)}
         </div>
       <div className="cover-gallery" id="coverbilder" aria-labelledby="covers-title">
         <div className="section-heading"><div><p className="eyebrow">{t.covers}</p><h2 id="covers-title">{t.coversTitle}</h2></div><p>{t.coversIntro}</p></div>
