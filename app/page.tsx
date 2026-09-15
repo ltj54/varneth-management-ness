@@ -46,7 +46,7 @@ const covers = [
   { file: "until-you-return", title: "Until You Return", project: "Broken Veil", spotifyName: "brøken veil", size: 1254 },
   { file: "abyssal", title: "Abyssal", project: "Broken Veil", spotifyName: "brøken veil", size: 1254 },
 ];
-const basePath = process.env.NODE_ENV === "production" ? "/varneth-management-ness" : "";
+const basePath = process.env.NEXT_PUBLIC_SITE_BASE_PATH ?? "";
 
 export default function Home() {
   const [language, setLanguage] = useState<"nb" | "en">("nb");
