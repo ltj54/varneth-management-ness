@@ -10,10 +10,10 @@ const copy = {
     title: "Musikk med", italic: "egen signatur.",
     intro: "Varneth Management Ness er foretaket bak KI-musikkproduksjon, utgivelser og rådgivning. Henning Stockmann Ness står bak virksomheten og utvikler egne musikkprosjekter.",
     listen: "Utforsk musikken", contact: "Ta kontakt",
-    projects: "Varneth Management Ness", projectTitle: "Prosjekter og utgivelser.", projectIntro: "Foretakets egne musikkprosjekter. Utforsk lyden på Spotify.", featuredLabel: "Utvalgt låt", featuredText: "Crown of Cracks fra Black Veil Hearts.", featuredLink: "Hør låten på Spotify",
+    projects: "Varneth Management Ness", projectTitle: "Prosjekter og utgivelser.", projectIntro: "Foretakets egne musikkprosjekter. Finn riktig prosjekt på Facebook.", projectLink: "Se prosjektet på Facebook", featuredLabel: "Utvalgt låt", featuredText: "Crown of Cracks fra Black Veil Hearts.", featuredLink: "Hør låten på Spotify",
     covers: "Coverbilder", coversTitle: "Utvalgte coverbilder.", coversIntro: "Tre coverbilder hører til Broken Veil. «Home to You» hører til Black Veil Hearts.", coverOpen: "Åpne omslaget i full størrelse",
     ai: "Eget KI-musikkprosjekt", search: "Søk på Spotify",
-    human: "Bak uttrykket", humanTitle: "Henning", humanLast: "Stockmann Ness.",
+    human: "Bak uttrykket", humanTitle: "Henning", humanLast: "Stockmann Ness.", illustrationAlt: "KI-illustrasjon av Henning og Varneth Management Ness", illustrationCaption: "KI-illustrasjon av Henning og Varneth Management Ness – kreativitet, musikk og teknologi i utvikling.",
     bio: "Henning er KI-komponist og driver med produksjon og utgivelse av KI-musikk. Gjennom Varneth Management Ness utvikler han egne prosjekter og tilbyr rådgivning innen KI-musikkproduksjon.", training: "Pågående grunnkurs i AI engineering.",
     approach: "Kreativitet møter teknologi", approachText: "Egne musikkprosjekter. Nye verktøy. Et personlig uttrykk.",
     craft: "Arbeidet", craftTitle: "Fra idé til uttrykk.",
@@ -26,10 +26,10 @@ const copy = {
     title: "Music with", italic: "its own signature.",
     intro: "Varneth Management Ness is the company behind AI music production, releases and consulting. Henning Stockmann Ness leads the company and develops its original music projects.",
     listen: "Explore the music", contact: "Get in touch",
-    projects: "Varneth Management Ness", projectTitle: "Projects and releases.", projectIntro: "The company’s original music projects. Explore the sound on Spotify.", featuredLabel: "Featured track", featuredText: "Crown of Cracks by Black Veil Hearts.", featuredLink: "Listen on Spotify",
+    projects: "Varneth Management Ness", projectTitle: "Projects and releases.", projectIntro: "The company’s original music projects. Find the right project on Facebook.", projectLink: "View project on Facebook", featuredLabel: "Featured track", featuredText: "Crown of Cracks by Black Veil Hearts.", featuredLink: "Listen on Spotify",
     covers: "Cover artwork", coversTitle: "Selected artwork.", coversIntro: "Three covers belong to Broken Veil. «Home to You» belongs to Black Veil Hearts.", coverOpen: "Open full-size artwork",
     ai: "Original AI music project", search: "Search on Spotify",
-    human: "Behind the sound", humanTitle: "Henning", humanLast: "Stockmann Ness.",
+    human: "Behind the sound", humanTitle: "Henning", humanLast: "Stockmann Ness.", illustrationAlt: "AI illustration of Henning and Varneth Management Ness", illustrationCaption: "AI illustration of Henning and Varneth Management Ness – creativity, music and technology in development.",
     bio: "Henning is an AI composer working in AI music production and releases. Through Varneth Management Ness, he develops his own projects and offers consulting in AI music production.", training: "Currently taking a foundation course in AI engineering.",
     approach: "Creativity meets technology", approachText: "Original music projects. New tools. A personal expression.",
     craft: "The craft", craftTitle: "From idea to expression.",
@@ -41,10 +41,10 @@ const copy = {
 const search = (name: string) => `https://open.spotify.com/search/${encodeURIComponent(name)}`;
 const featuredTrack = "https://open.spotify.com/track/4G7Vy4gDtq8GbPiS72hXqZ";
 const covers = [
-  { file: "home-to-you", title: "Home to You", project: "Black Veil Hearts", spotifyName: "black veil hart by emmely", size: 1254 },
-  { file: "scars-dont-lie", title: "Scars Don’t Lie", project: "Broken Veil", spotifyName: "brøken veil", size: 724 },
-  { file: "until-you-return", title: "Until You Return", project: "Broken Veil", spotifyName: "brøken veil", size: 1254 },
-  { file: "abyssal", title: "Abyssal", project: "Broken Veil", spotifyName: "brøken veil", size: 1254 },
+  { file: "home-to-you", title: "Home to You", project: "Black Veil Hearts", socialUrl: "https://www.facebook.com/share/1U9urN8ys5/", size: 1254 },
+  { file: "scars-dont-lie", title: "Scars Don’t Lie", project: "Broken Veil", socialUrl: "https://www.facebook.com/share/14ktmModUdV/", size: 724 },
+  { file: "until-you-return", title: "Until You Return", project: "Broken Veil", socialUrl: "https://www.facebook.com/share/14ktmModUdV/", size: 1254 },
+  { file: "abyssal", title: "Abyssal", project: "Broken Veil", socialUrl: "https://www.facebook.com/share/14ktmModUdV/", size: 1254 },
 ];
 const basePath = process.env.NEXT_PUBLIC_SITE_BASE_PATH ?? "";
 
@@ -90,7 +90,7 @@ export default function Home() {
       <section className="music section" id="musikk">
         <div className="section-heading"><div><p className="eyebrow">{t.projects}</p><h2>{t.projectTitle}</h2></div><p>{t.projectIntro}</p></div>
         <div className="project-grid">
-          {[{ name: "Broken Veil", spotifyName: "brøken veil", logo: "broken-veil.png", width: 1536, height: 1024 }, { name: "Black Veil Hearts", spotifyName: "black veil hart by emmely", spotifyUrl: "https://open.spotify.com/artist/2qx3eGLGesYxreHPBbtgxX", logo: "black-veil-hearts.png", width: 1254, height: 1254 }].map(({ name, spotifyName, spotifyUrl, logo, width, height }, i) => <a className={`project project-${i}`} href={spotifyUrl ?? search(spotifyName)} target="_blank" rel="noreferrer" key={name}><div className="project-art project-logo"><Image src={`${basePath}/${logo}`} alt={`${name} – ${language === "nb" ? "prosjektlogo" : "project logo"}`} width={width} height={height} sizes="(max-width: 600px) 90vw, 44vw" /></div><div className="project-content"><p className="eyebrow">{t.ai}</p><h3>{name}</h3><span className="project-link">{t.search}<b aria-hidden="true">↗</b></span></div></a>)}
+          {[{ name: "Broken Veil", url: "https://www.facebook.com/share/14ktmModUdV/", logo: "broken-veil.png", width: 1536, height: 1024 }, { name: "Black Veil Hearts", url: "https://www.facebook.com/share/1U9urN8ys5/", logo: "black-veil-hearts.png", width: 1254, height: 1254 }].map(({ name, url, logo, width, height }, i) => <a className={`project project-${i}`} href={url} target="_blank" rel="noreferrer" key={name}><div className="project-art project-logo"><Image src={`${basePath}/${logo}`} alt={`${name} – ${language === "nb" ? "prosjektlogo" : "project logo"}`} width={width} height={height} sizes="(max-width: 600px) 90vw, 44vw" /></div><div className="project-content"><p className="eyebrow">{t.ai}</p><h3>{name}</h3><span className="project-link">{t.projectLink}<b aria-hidden="true">↗</b></span></div></a>)}
         </div>
       <div className="cover-gallery" id="coverbilder" aria-labelledby="covers-title">
         <div className="section-heading"><div><p className="eyebrow">{t.covers}</p><h2 id="covers-title">{t.coversTitle}</h2></div><p>{t.coversIntro}</p></div>
@@ -107,14 +107,14 @@ export default function Home() {
           <div className="cover-modal-content">
             <button className="cover-close" type="button" onClick={() => setSelectedCover(null)} aria-label={language === "nb" ? "Lukk coverbildet" : "Close cover artwork"}>×</button>
             <Image src={`${basePath}/covers/${selectedCover.file}.png`} alt={`${selectedCover.project} — ${selectedCover.title}`} width={selectedCover.size} height={selectedCover.size} priority sizes="(max-width: 900px) 92vw, 70vw" />
-            <div className="cover-modal-caption"><span>{selectedCover.project}</span><h3 id="cover-modal-title">{selectedCover.title}</h3><a className="text-link" href={search(`${selectedCover.spotifyName} ${selectedCover.title}`)} target="_blank" rel="noreferrer">{t.search} ↗</a></div>
+            <div className="cover-modal-caption"><span>{selectedCover.project}</span><h3 id="cover-modal-title">{selectedCover.title}</h3><a className="text-link" href={selectedCover.socialUrl} target="_blank" rel="noreferrer">{t.projectLink} ↗</a></div>
           </div>
         </dialog>}
         </div>
         <div className="featured-track"><div><p className="eyebrow">{t.featuredLabel}</p><h3>{t.featuredText}</h3></div><a className="button outline" href={featuredTrack} target="_blank" rel="noreferrer">{t.featuredLink} <span aria-hidden="true">↗</span></a></div>
       </section>
 
-      <section className="about section" id="henning"><div><p className="eyebrow">{t.human}</p><h2>{t.humanTitle}<br /><em>{t.humanLast}</em></h2><p className="bio">{t.bio}</p><p className="bio-note">{t.training}</p><a className="text-link" href="#kontakt">{t.contact} ↗</a></div></section>
+      <section className="about section" id="henning"><div className="about-content-grid"><div className="about-copy"><p className="eyebrow">{t.human}</p><h2>{t.humanTitle}<br /><em>{t.humanLast}</em></h2><p className="bio">{t.bio}</p><p className="bio-note">{t.training}</p><a className="text-link" href="#kontakt">{t.contact} ↗</a></div><figure className="about-illustration"><Image src={`${basePath}/about-ai.png`} alt={t.illustrationAlt} width={1536} height={1152} sizes="(max-width: 900px) 90vw, 45vw" /><figcaption>{t.illustrationCaption}</figcaption></figure></div></section>
 
 
       <aside className="inspiration section"><div><p className="eyebrow">{t.inspiration}</p><small>{t.inspirationNote}</small></div><div className="inspiration-links">{["Gravel N Bones", "Iron West", "Abdysall"].map(name=><a href={search(name)} target="_blank" rel="noreferrer" key={name}>{name}<small>{t.inspirationLink} ↗</small></a>)}</div></aside>
