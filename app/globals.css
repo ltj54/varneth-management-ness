@@ -93,3 +93,11 @@ main .cover-modal-content { max-height:none; }
 .featured-track h3{margin-top:.35rem;font-size:clamp(1.5rem,3vw,2.5rem)}
 .featured-track .button{flex:0 0 auto}
 @media(max-width:600px){.featured-track{align-items:flex-start;flex-direction:column}.featured-track .button{width:100%}}
+.story-project{margin-top:3rem;padding-top:2.5rem;border-top:1px solid var(--line)}
+.story-project .section-heading{margin-bottom:1.5rem}
+.story-project .section-heading h2{font-size:clamp(2rem,3.4vw,3.5rem)}
+.story-art-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.5rem}
+.story-art-grid figure{margin:0;overflow:hidden;border:1px solid var(--line);background:#070707}
+.story-art-grid img{display:block;width:100%;height:auto;transition:transform .5s ease}
+.story-art-grid figure:hover img{transform:scale(1.02)}
+@media(max-width:700px){.story-art-grid{grid-template-columns:1fr;gap:1rem}}

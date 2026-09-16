@@ -10,7 +10,7 @@ const copy = {
     title: "Musikk med", italic: "egen signatur.",
     intro: "Varneth Management Ness er foretaket bak KI-musikkproduksjon, utgivelser og rådgivning. Henning Stockmann Ness står bak virksomheten og utvikler egne musikkprosjekter.",
     listen: "Utforsk musikken", contact: "Ta kontakt",
-    projects: "Varneth Management Ness", projectTitle: "Prosjekter og utgivelser.", projectIntro: "Foretakets egne musikkprosjekter. Finn riktig prosjekt på Facebook.", projectLink: "Se prosjektet på Facebook", featuredLabel: "Utvalgt låt", featuredText: "Crown of Cracks fra Black Veil Hearts.", featuredLink: "Hør låten på Spotify",
+    projects: "Varneth Management Ness", projectTitle: "Prosjekter og utgivelser.", projectIntro: "Foretakets egne musikkprosjekter. Finn riktig prosjekt på Facebook.", projectLink: "Se prosjektet på Facebook", featuredLabel: "Utvalgt låt", featuredText: "Crown of Cracks fra Black Veil Hearts.", featuredLink: "Hør låten på Spotify", storyLabel: "Nytt prosjekt", storyTitle: "KI-storytelling musikkprosjekt", storyAltOne: "KI-musikkillustrasjon med tittelen The Dark Romance", storyAltTwo: "KI-musikkillustrasjon med tittelen Kiss Me When the World Ends",
     covers: "Coverbilder", coversTitle: "Utvalgte coverbilder.", coversIntro: "Tre coverbilder hører til Broken Veil. «Home to You» hører til Black Veil Hearts.", coverOpen: "Åpne omslaget i full størrelse",
     ai: "Eget KI-musikkprosjekt", search: "Søk på Spotify",
     human: "Bak uttrykket", humanTitle: "Henning", humanLast: "Stockmann Ness.", illustrationAlt: "KI-illustrasjon av Henning og Varneth Management Ness", illustrationCaption: "KI-illustrasjon av Henning og Varneth Management Ness – kreativitet, musikk og teknologi i utvikling.",
@@ -26,7 +26,7 @@ const copy = {
     title: "Music with", italic: "its own signature.",
     intro: "Varneth Management Ness is the company behind AI music production, releases and consulting. Henning Stockmann Ness leads the company and develops its original music projects.",
     listen: "Explore the music", contact: "Get in touch",
-    projects: "Varneth Management Ness", projectTitle: "Projects and releases.", projectIntro: "The company’s original music projects. Find the right project on Facebook.", projectLink: "View project on Facebook", featuredLabel: "Featured track", featuredText: "Crown of Cracks by Black Veil Hearts.", featuredLink: "Listen on Spotify",
+    projects: "Varneth Management Ness", projectTitle: "Projects and releases.", projectIntro: "The company’s original music projects. Find the right project on Facebook.", projectLink: "View project on Facebook", featuredLabel: "Featured track", featuredText: "Crown of Cracks by Black Veil Hearts.", featuredLink: "Listen on Spotify", storyLabel: "New project", storyTitle: "AI storytelling music project", storyAltOne: "AI music artwork titled The Dark Romance", storyAltTwo: "AI music artwork titled Kiss Me When the World Ends",
     covers: "Cover artwork", coversTitle: "Selected artwork.", coversIntro: "Three covers belong to Broken Veil. «Home to You» belongs to Black Veil Hearts.", coverOpen: "Open full-size artwork",
     ai: "Original AI music project", search: "Search on Spotify",
     human: "Behind the sound", humanTitle: "Henning", humanLast: "Stockmann Ness.", illustrationAlt: "AI illustration of Henning and Varneth Management Ness", illustrationCaption: "AI illustration of Henning and Varneth Management Ness – creativity, music and technology in development.",
@@ -112,6 +112,7 @@ export default function Home() {
         </dialog>}
         </div>
         <div className="featured-track"><div><p className="eyebrow">{t.featuredLabel}</p><h3>{t.featuredText}</h3></div><a className="button outline" href={featuredTrack} target="_blank" rel="noreferrer">{t.featuredLink} <span aria-hidden="true">↗</span></a></div>
+        <section className="story-project" aria-labelledby="story-project-title"><div className="section-heading"><div><p className="eyebrow">{t.storyLabel}</p><h2 id="story-project-title">{t.storyTitle}</h2></div></div><div className="story-art-grid"><figure><Image src={`${basePath}/storytelling-1.png`} alt={t.storyAltOne} width={1254} height={1254} sizes="(max-width: 700px) 90vw, 42vw" /></figure><figure><Image src={`${basePath}/storytelling-2.png`} alt={t.storyAltTwo} width={1254} height={1254} sizes="(max-width: 700px) 90vw, 42vw" /></figure></div></section>
       </section>
 
       <section className="about section" id="henning"><div className="about-content-grid"><div className="about-copy"><p className="eyebrow">{t.human}</p><h2>{t.humanTitle}<br /><em>{t.humanLast}</em></h2><p className="bio">{t.bio}</p><p className="bio-note">{t.training}</p><a className="text-link" href="#kontakt">{t.contact} ↗</a></div><figure className="about-illustration"><Image src={`${basePath}/about-ai.png`} alt={t.illustrationAlt} width={1536} height={1152} sizes="(max-width: 900px) 90vw, 45vw" /><figcaption>{t.illustrationCaption}</figcaption></figure></div></section>
