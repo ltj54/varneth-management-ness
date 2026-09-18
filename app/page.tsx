@@ -19,7 +19,7 @@ const copy = {
     craft: "Arbeidet", craftTitle: "Fra idé til uttrykk.",
     services: [["KI-musikkproduksjon", "Produksjon og utgivelse av KI-musikk gjennom egne prosjekter."], ["KI-komposisjon", "Musikalske ideer og komposisjoner utviklet med KI som kreativt verktøy."], ["Rådgivning", "Ta kontakt om rådgivning innen KI-musikkproduksjon og arbeidet med egne prosjekter."]],
     inspiration: "På Hennings spilleliste", inspirationNote: "Musikalsk inspirasjon · uavhengige artister", inspirationLink: "Spotify-søk",
-    end: "Har du et", endItalic: "prosjekt?", endText: "Vil du snakke om KI-musikk, produksjon eller rådgivning? Ta kontakt med Henning.", email: "Skriv til Henning", footer: "KI-komposisjon · Musikkproduksjon · Rådgivning",
+    end: "Har du et", endItalic: "prosjekt?", endText: "Vil du snakke om KI-musikk, produksjon eller rådgivning? Ta kontakt med Henning.", email: "Skriv til Henning", facebook: "Følg Varneth", footer: "KI-komposisjon · Musikkproduksjon · Rådgivning",
   },
   en: {
     nav: ["The music", "About Henning", "Contact"], label: "AI composition · Music production · Consulting",
@@ -35,7 +35,7 @@ const copy = {
     craft: "The craft", craftTitle: "From idea to expression.",
     services: [["AI music production", "Producing and releasing AI music through original projects."], ["AI composition", "Musical ideas and compositions developed with AI as a creative tool."], ["Consulting", "Get in touch about AI music production consulting and developing your own projects."]],
     inspiration: "On Henning’s playlist", inspirationNote: "Musical inspiration · independent artists", inspirationLink: "Spotify search",
-    end: "Have a", endItalic: "project?", endText: "Want to talk about AI music, production or consulting? Get in touch with Henning.", email: "Write to Henning", footer: "AI composition · Music production · Consulting",
+    end: "Have a", endItalic: "project?", endText: "Want to talk about AI music, production or consulting? Get in touch with Henning.", email: "Write to Henning", facebook: "Follow Varneth", footer: "AI composition · Music production · Consulting",
   },
 };
 const search = (name: string) => `https://open.spotify.com/search/${encodeURIComponent(name)}`;
@@ -115,7 +115,7 @@ export default function Home() {
         <section className="story-project" aria-labelledby="story-project-title"><div className="section-heading"><div><p className="eyebrow">{t.storyLabel}</p><h2 id="story-project-title">{t.storyTitle}</h2></div></div><div className="story-art-grid"><figure><Image src={`${basePath}/storytelling-1.png`} alt={t.storyAltOne} width={1254} height={1254} sizes="(max-width: 700px) 90vw, 45vw" /></figure><figure><Image src={`${basePath}/storytelling-2.png`} alt={t.storyAltTwo} width={1254} height={1254} sizes="(max-width: 700px) 90vw, 45vw" /></figure><figure><Image src={`${basePath}/the-dead-romance.png`} alt={t.storyAltThree} width={1024} height={1536} sizes="(max-width: 480px) 90vw, 430px" /></figure></div><p className="story-project-caption">{t.storyCaption}</p></section>
       </section>
 
-      <section className="about section" id="henning"><div className="about-content-grid"><div className="about-copy"><p className="eyebrow">{t.human}</p><h2>{t.humanTitle}<br /><em>{t.humanLast}</em></h2><p className="bio">{t.bio}</p><p className="bio-note">{t.training}</p><a className="text-link" href="#kontakt">{t.contact} ↗</a></div><figure className="about-illustration"><Image src={`${basePath}/about-ai.png`} alt={t.illustrationAlt} width={1536} height={1152} sizes="(max-width: 900px) 90vw, 45vw" /><figcaption>{t.illustrationCaption}</figcaption></figure></div></section>
+      <section className="about section" id="henning"><div className="about-content-grid"><div className="about-copy"><p className="eyebrow">{t.human}</p><h2>{t.humanTitle}<br /><em>{t.humanLast}</em></h2><p className="bio">{t.bio}</p><p className="bio-note">{t.training}</p><a className="facebook-icon-link" href="https://www.facebook.com/share/1WVwG43WTq/" target="_blank" rel="noreferrer" aria-label="Facebook: Varneth Management Ness"><span className="facebook-icon-crop"><Image src={`${basePath}/facebook-brand.png`} alt="" width={40} height={40} sizes="40px" /></span><span>{t.facebook}</span></a></div><figure className="about-illustration"><Image src={`${basePath}/about-ai.png`} alt={t.illustrationAlt} width={1536} height={1152} sizes="(max-width: 900px) 90vw, 45vw" /><figcaption>{t.illustrationCaption}</figcaption></figure></div></section>
 
 
       <aside className="inspiration section"><div><p className="eyebrow">{t.inspiration}</p><small>{t.inspirationNote}</small></div><div className="inspiration-links">{["Gravel N Bones", "Iron West", "Abdysall"].map(name=><a href={search(name)} target="_blank" rel="noreferrer" key={name}>{name}<small>{t.inspirationLink} ↗</small></a>)}</div></aside>
