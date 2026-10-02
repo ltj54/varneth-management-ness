@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { StoryImage } from "../story-image";
-import { book3Blocks, book3Credits, book3Eyebrow, book3HeaderImage, book3Title } from "./story";
+import { book3Blocks, book3Credits, book3Eyebrow, book3Title } from "./story";
 
 const basePath = process.env.NEXT_PUBLIC_SITE_BASE_PATH ?? "";
 const imagePath = (number: string) => `${basePath}/broken-veil-book-3/image-${number.padStart(2, "0")}.png`;
@@ -29,7 +29,17 @@ export default function BrokenVeilBook3() {
         <p className="eyebrow">{book3Eyebrow} · Broken Veil</p>
         <h1>{book3Title}</h1>
         <p className="story-subtitle">En fortelling om familie, musikk og nye begynnelser</p>
-        <figure className="story-header-image"><StoryImage src={imagePath(book3HeaderImage)} alt="Illustrasjon fra Broken Veil – Cruiset" width={1024} height={1024} /></figure>
+        <div className="book3-media-grid">
+          <figure>
+            <StoryImage src={`${basePath}/broken-veil-book-3-cover.png`} alt="Bokomslag til Broken Veil bok 3" width={1024} height={1536} />
+            <figcaption>Bokomslag · Broken Veil bok 3</figcaption>
+          </figure>
+          <figure>
+            <StoryImage src={`${basePath}/broken-veil-book-3-music-cover.png`} alt="Musikkcoveret The Short Story Score til Broken Veil bok 3" width={1024} height={1536} />
+            <figcaption>Musikken til bok 3 · The Short Story Score</figcaption>
+            <a className="button outline story-music-link" href="https://open.spotify.com/playlist/1EDMImA1bqtromfgivFvij" target="_blank" rel="noreferrer">Hør musikken på Spotify <span aria-hidden="true">↗</span></a>
+          </figure>
+        </div>
         <p className="story-credits">{book3Credits}</p>
       </header>
 
