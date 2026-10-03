@@ -34,11 +34,6 @@ export default function BrokenVeilBook3() {
             <StoryImage src={`${basePath}/broken-veil-book-3-cover.png`} alt="Bokomslag til Broken Veil bok 3" width={1024} height={1536} />
             <figcaption>Bokomslag · Broken Veil bok 3</figcaption>
           </figure>
-          <figure>
-            <StoryImage src={`${basePath}/broken-veil-book-3-music-cover.png`} alt="Musikkcoveret The Short Story Score til Broken Veil bok 3" width={1024} height={1536} />
-            <figcaption>Musikken til bok 3 · The Short Story Score</figcaption>
-            <a className="button outline story-music-link" href="https://open.spotify.com/playlist/1EDMImA1bqtromfgivFvij" target="_blank" rel="noreferrer">Hør musikken på Spotify <span aria-hidden="true">↗</span></a>
-          </figure>
         </div>
         <p className="story-credits">{book3Credits}</p>
       </header>
